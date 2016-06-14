@@ -96,7 +96,7 @@ def _nombrar_segmento(x, unidad_larga=False):
         3: (d == 2 and u"trés") or u"tres",
         4: u"cuatro",
         5: u"cinco",
-        6: (d == 2 and u"séis") or u"seis",
+        6: (d in (1, 2) and u"séis") or u"seis",
         7: u"siete",
         8: u"ocho",
         9: u"nueve",
@@ -184,8 +184,9 @@ def nombrar_numero(x):
             resultado_segmento += u" "
             # Distinguimos entre singular o plural.
             if resultado_segmento == u"un ":
-                # Si el resultado es un 1 y estamos nombrando millares, lo dejamos
-                # vacío. Es decir: para 1000 no vamos a decir 'un mil', sino sólo mil.
+                # Si el resultado es un 1 y estamos nombrando millares, lo
+                # dejamos vacío. Es decir: para 1000 no vamos a decir
+                # 'un mil', sino sólo mil.
                 if (index % 2) == 1:
                     resultado_segmento = mapa_sufijos_singular[index]
                 else:
@@ -197,4 +198,3 @@ def nombrar_numero(x):
     # Probablemente queden espacios a la izquierda (un mínimo de 1). 
     # Los eliminamos.
     return resultado.lstrip()
-
